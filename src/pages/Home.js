@@ -47,7 +47,7 @@ const handleInputEnter = (e) =>{
         <button onClick={joinRoom} className="btn joinBtn">Jjoin</button>
         <span className="createInfo">
           If you dont have an invite then create &nbsp;
-          <a onClick={(e)=>{createNewRoom(e)}} href="" className="createNewBtn">
+          <a onClick={(e)=>{createNewRoom(e)}} href="/" className="createNewBtn">
             New Room
           </a>
         </span>

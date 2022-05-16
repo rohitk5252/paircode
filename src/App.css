@@ -44,6 +44,7 @@
   padding: 10px;
   border-radius: 5px;
   font-size: 16px;
+  font-weight: bold;
   cursor: pointer;
   transition: all 0.30 ease-in-out;
 }
@@ -82,3 +83,63 @@ footer a{
   color: #2b824c;
   border-color: #2b824c;
 }
+
+.mainWrap {
+  display: grid;
+  grid-template-columns: 230px 1fr;
+  height: 100vh;
+}
+
+.aside {
+  background: #1c1e29;
+  padding: 16px;
+  color: #fff;
+  display : flex ;
+  flex-direction: column;
+}
+
+.asideInner {
+  flex :1;
+}
+.clientsList {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap : 20px
+}
+
+.client {
+  display : flex;
+  flex-direction: column;
+}
+
+.logoImage {
+  height: 80px;
+  margin-bottom: 20px;
+  border-radius: 9px;
+}
+.logo {
+  border-bottom: 1px solid #424242;
+  padding-bottom: 10px;
+}
+
+.userName {
+  margin-top: 7px;
+}
+
+.leaveBtn{
+  margin-top: 20px;
+  background: #f0163b;
+}
+
+.leaveBtn:hover{
+  background: #ed3050;
+  color: #eee;
+}
+
+ .CodeMirror {
+   min-height : calc(100vh-20px);
+   font-size: 20px;
+   line-height: 1.6;
+   padding-top: 20px;
+ } 
