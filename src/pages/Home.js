@@ -44,7 +44,7 @@ const handleInputEnter = (e) =>{
         <div className="inputGroup">
           <input type="text" className="inputBox" placeholder= "ROOM ID" onChange= {(e)=> setRoomId(e.target.value)} value={roomId} onKeyUp={handleInputEnter} />
           <input type="text" className="inputBox" placeholder= "USER NAME" onChange= {(e)=> setUsername(e.target.value)} onKeyUp={handleInputEnter}/>
-        <button onClick={joinRoom} className="btn joinBtn">Jjoin</button>
+        <button onClick={joinRoom} className="btn joinBtn">Join</button>
         <span className="createInfo">
           If you dont have an invite then create &nbsp;
           <a onClick={(e)=>{createNewRoom(e)}} href="/" className="createNewBtn">
