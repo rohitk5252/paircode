@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 const Home = () => {
   
   const navigate = useNavigate();
+  
   const [roomId, setRoomId] = useState('');
   const [username, setUsername] = useState('');
 
@@ -14,7 +15,7 @@ const Home = () => {
     const id = uuidV4();
     setRoomId(id);
     toast.success('Created a new room');
-  };
+  }; 
 
 
   const joinRoom = () =>{
