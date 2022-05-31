@@ -7,10 +7,9 @@ import toast from 'react-hot-toast';
 import ACTIONS from '../Actions';
 
 
-// 2 ; 47 // 2 ; 47 // 2 ; 47 
-// 2 ; 47 // 2 ; 47 
-// 2 ; 47 // 2 ; 47 // 2 ; 47 
-// 2 ; 47 // 2 ; 47 // 2 ; 47 
+// 3:19
+
+// 3:19
 
 
 const EditorPage = () => {
@@ -62,6 +61,15 @@ const EditorPage = () => {
         });
     };
     init();
+
+    // 2:50
+    // Cleaning Function 
+    // return () => {
+    //   socketRef.current.disconnect();
+    //   socketRef.current.off(ACTIONS.JOINED);
+    //   socketRef.current.off(ACTIONS.DISCONNECTED);      
+    // };
+
   },[]); 
 
 
@@ -90,7 +98,7 @@ const EditorPage = () => {
         <button className="btn leaveBtn">Leave</button>
       </div>
       <div className="editorWrap">
-         <Editor />
+         <Editor socketRef={socketRef} roomId={roomId}/>
       </div>
     </div>
   )
