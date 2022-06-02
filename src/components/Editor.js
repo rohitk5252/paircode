@@ -9,13 +9,12 @@ import 'codemirror/addon/edit/closebrackets';
 import ACTIONS from '../Actions';
 
 
-const Editor = ({socketRef, roomId}) => {
+const Editor = ({ socketRef, roomId, onCodeChange }) => {
 
 const editorRef = useRef(null);
 
 useEffect(()=>{
     async function init(){
-        console.log('i ran......');
         editorRef.current = Codemirror.fromTextArea(document.getElementById('realtimeEditor'),{
             mode: {name:'javascript',json: true},
             theme: 'dracula',
@@ -25,9 +24,9 @@ useEffect(()=>{
         });
 
         editorRef.current.on('change',(instance, changes) => {
-            console.log(changes);
             const {origin} = changes;
             const code = instance.getValue();
+            onCodeChange(code);
             console.log(code);
             if(origin !== 'setValue') {
                 socketRef.current.emit(ACTIONS.CODE_CHANGE, {
@@ -41,6 +40,7 @@ useEffect(()=>{
 
     }
     init();
+
 },[]);
 useEffect(() =>{
     if(socketRef.current){
@@ -50,7 +50,13 @@ useEffect(() =>{
         }
     });
     }
-},[socketRef.current])
+    // TODO
+    // Cleaning function
+    // return () => {
+    //     socketRef.current.off(ACTIONS.CODE_CHANGE);
+    // }
+},[socketRef.current]);
+
   return <textarea id="realtimeEditor"></textarea>
 }
 

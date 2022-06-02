@@ -7,15 +7,18 @@ import toast from 'react-hot-toast';
 import ACTIONS from '../Actions';
 
 
-// 3:19
-
-// 3:19
+// 3:29
+// Errors Code not syncing for new joiners
+// Error cleaning functions breaking the App
+// Copy Clipboard not working , something to do with browser and HTTPS
+// 3:29
 
 
 const EditorPage = () => {
   console.log('i ran...Editor Page...');
 
   const reactNavigator = useNavigate();
+  const codeRef = useRef(null);
   const socketRef = useRef(null);
   const location = useLocation();
   const {roomId}  = useParams();
@@ -39,8 +42,6 @@ const EditorPage = () => {
         } );
 
         // Listening For Joined Event
-        console.log(clients,"cl");
-
         socketRef.current.on(
           ACTIONS.JOINED, 
           ({clients,username,socketId}) => {
@@ -50,6 +51,10 @@ const EditorPage = () => {
           }
 
           setClients(clients);
+          socketRef.current.emit(ACTIONS.SYNC_CODE, {
+            code: codeRef.current,
+            socketId,
+          });
         }
         );
         // Listening for disconnected
@@ -63,6 +68,8 @@ const EditorPage = () => {
     init();
 
     // 2:50
+    // TODO 
+    // TODO
     // Cleaning Function 
     // return () => {
     //   socketRef.current.disconnect();
@@ -72,7 +79,22 @@ const EditorPage = () => {
 
   },[]); 
 
+  // TODO to BUG 
+  async function copyRoomId() {
+    const val = roomId;
+    try {
+        await navigator.clipboard.writeText(val);
+        toast.success('Room ID copied to clipboard');
+    } catch (err) {
+        toast.error('Could not copy room ID');
+        console.log('----',err);
 
+    }
+  }
+
+  function leaveRoom(){
+    reactNavigator('/');
+  }
 
   if(!location.state){
     return <Navigate/>
@@ -94,11 +116,15 @@ const EditorPage = () => {
             }
           </div>
         </div>
-        <button className="btn copyBtn">Copy Room</button>
-        <button className="btn leaveBtn">Leave</button>
+        <button className="btn copyBtn" onClick={copyRoomId}>Copy Room</button>
+        <button className="btn leaveBtn" onClick={leaveRoom}>Leave</button>
       </div>
       <div className="editorWrap">
-         <Editor socketRef={socketRef} roomId={roomId}/>
+         <Editor socketRef={socketRef} 
+                 roomId={roomId} 
+                 onCodeChange={(code) => {
+                     codeRef.current = code;
+           }}/>
       </div>
     </div>
   )
