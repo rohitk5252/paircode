@@ -8,7 +8,7 @@ const io = new Server(server);
 const ACTIONS = require('./src/Actions');
 
 const userSocketMap = {};
-
+let id = null ;
 function getAllConnectedClients(roomId){
     return Array.from(io.sockets.adapter.rooms.get(roomId) || []).map((socketId)=>{
         return {
@@ -19,10 +19,10 @@ function getAllConnectedClients(roomId){
 }
 io.on('connection', (socket)=>{
     // 
+    id = socket.id;
+    console.log('Socket connected',socket.id);
     
- console.log('Socket connected',socket.id);
-    
-    socket.on('join',({roomId,username})=>{
+    socket.on(ACTIONS.JOIN,({roomId,username})=>{
        userSocketMap[socket.id] = username;
        socket.join(roomId);
         
@@ -43,7 +43,7 @@ io.on('connection', (socket)=>{
     });
 
     socket.on(ACTIONS.SYNC_CODE, ({socketId, code}) => {
-       io.to(socketId).emit(ACTIONS.SYNC_CODE, { code });
+        io.to(socketId).emit(ACTIONS.CODE_CHANGE, { code });
     });
 
     socket.on('disconnecting', () =>{

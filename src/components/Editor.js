@@ -27,7 +27,6 @@ useEffect(()=>{
             const {origin} = changes;
             const code = instance.getValue();
             onCodeChange(code);
-            console.log(code);
             if(origin !== 'setValue') {
                 socketRef.current.emit(ACTIONS.CODE_CHANGE, {
                     roomId,
@@ -50,11 +49,11 @@ useEffect(() =>{
         }
     });
     }
-    // TODO
-    // Cleaning function
-    // return () => {
-    //     socketRef.current.off(ACTIONS.CODE_CHANGE);
-    // }
+ 
+    // Cleanup function
+    return function cleanup() {
+        socketRef.current.off(ACTIONS.CODE_CHANGE);
+    }
 },[socketRef.current]);
 
   return <textarea id="realtimeEditor"></textarea>

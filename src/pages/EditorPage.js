@@ -7,13 +7,6 @@ import toast from 'react-hot-toast';
 import ACTIONS from '../Actions';
 
 
-// 3:29
-// Errors Code not syncing for new joiners
-// Error cleaning functions breaking the App
-// Copy Clipboard not working , something to do with browser and HTTPS
-// 3:29
-
-
 const EditorPage = () => {
   console.log('i ran...Editor Page...');
 
@@ -67,15 +60,12 @@ const EditorPage = () => {
     };
     init();
 
-    // 2:50
-    // TODO 
-    // TODO
     // Cleaning Function 
-    // return () => {
-    //   socketRef.current.disconnect();
-    //   socketRef.current.off(ACTIONS.JOINED);
-    //   socketRef.current.off(ACTIONS.DISCONNECTED);      
-    // };
+    return function cleanup() {
+      socketRef.current.disconnect();
+      socketRef.current.off(ACTIONS.JOINED);
+      socketRef.current.off(ACTIONS.DISCONNECTED);      
+    };
 
   },[]); 
 

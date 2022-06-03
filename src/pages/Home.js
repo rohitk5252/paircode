@@ -40,6 +40,7 @@ const handleInputEnter = (e) =>{
   return (
     <div className='homePageWrapper'>
       <div className="formWrapper">
+      {/* <div className="tagLine">Code with a friend</div> */}
         <img className="homePageLogo" src="/pair-code.png" alt="pair code logo" />
         <h4 className="mainLabel">Paste invitation ROOM ID</h4>
         <div className="inputGroup">
