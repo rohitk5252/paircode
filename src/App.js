@@ -6,7 +6,7 @@ import EditorPage from './pages/EditorPage';
 import { Toaster } from 'react-hot-toast';
 
 function App() {
-  return (
+  return ( 
    <>
    <div>
       <Toaster 
