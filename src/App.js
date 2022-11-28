@@ -21,7 +21,7 @@ function App() {
      
      ></Toaster>
    </div>
-    <BrowserRouter>
+    <BrowserRouter basename='/'>
     <Routes>
       <Route path="/" element={<Home/>}></Route>
       <Route path="/editor/:roomId" element={<EditorPage/>}></Route>
