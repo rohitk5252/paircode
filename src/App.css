@@ -70,7 +70,11 @@
 
 footer{
   position: fixed;
-  bottom: 0;
+  width: 100vw;
+  height: 60px;
+  bottom: 0px;
+  text-align: center;
+  background:#282a36;
 }
 
 footer a{
