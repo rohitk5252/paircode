@@ -21,10 +21,10 @@
   },
   "scripts": {
     "start:front": "react-scripts start",
-    "build": "yarn server:prod && yarn start",
+    "build": "yarn start",
     "start": "react-scripts build",
     "server:dev": "nodemon server.js",
-    "server:prod": "node server.js",
+    
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
